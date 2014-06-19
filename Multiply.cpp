@@ -7,7 +7,7 @@ Multiply::Multiply()
 
 int Multiply::execute(int& a, int& b)
 {
-    std::cout << "Called Add's execute()";
+    std::cout << "Called Multiply's execute()" << std::endl;
     return a * b;
 }
 
