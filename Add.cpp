@@ -5,7 +5,7 @@ Add::Add()
 {
 }
 
-int Add::execute(int& a, int& b)
+int Add::execute(const int a, const int b)
 {
     std::cout << "Called Add's execute()" << std::endl;
     return a + b;

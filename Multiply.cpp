@@ -5,7 +5,7 @@ Multiply::Multiply()
 {
 }
 
-int Multiply::execute(int& a, int& b)
+int Multiply::execute(const int a, const int b)
 {
     std::cout << "Called Multiply's execute()" << std::endl;
     return a * b;

@@ -6,7 +6,7 @@ Context::Context(Strategy* strategy)
     this->strategy = strategy;
 }
 
-int Context::executeStrategy(int& a, int& b)
+int Context::executeStrategy(const int a, const int b)
 {
     return this->strategy->execute(a, b);
 }

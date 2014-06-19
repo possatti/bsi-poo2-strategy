@@ -12,7 +12,7 @@ class Strategy
 {
 public:
     Strategy();
-    virtual int execute(int& a, int& b) = 0;
+    virtual int execute(const int a, const int b) = 0;
     virtual ~Strategy();
 };
 

@@ -12,8 +12,8 @@ int main(int argc, char** argv)
 {
 
     Context* context;
-    int a = 3;
-    int b = 2;
+    const int a = 3;
+    const int b = 2;
 
     context = new Context(new Add());
     int resultA = context->executeStrategy(a, b);

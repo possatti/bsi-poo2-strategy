@@ -7,7 +7,7 @@ class Context
 {
 public:
     Context(Strategy* strategy);
-    int executeStrategy(int& a, int& b);
+    int executeStrategy(const int a, const int b);
     virtual ~Context();
 private:
     Strategy* strategy;

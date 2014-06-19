@@ -7,7 +7,7 @@ class Subtract : public Strategy
 {
 public:
     Subtract();
-    virtual int execute(int& a, int& b);
+    virtual int execute(const int a, const int b);
     virtual ~Subtract();
 };
 

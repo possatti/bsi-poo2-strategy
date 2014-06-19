@@ -14,7 +14,7 @@ class Add : public Strategy
 {
 public:
     Add();
-    virtual int execute(int& a, int& b);
+    virtual int execute(const int a, const int b);
     virtual ~Add();
 };
 
