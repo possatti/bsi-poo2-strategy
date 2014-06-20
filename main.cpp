@@ -11,22 +11,22 @@ using namespace std;
 int main(int argc, char** argv)
 {
 
-    Context* context;
+    const Context* context;
     const int a = 3;
     const int b = 2;
 
     context = new Context(new Add());
-    int resultA = context->executeStrategy(a, b);
+    const int resultA = context->executeStrategy(a, b);
 
     context->~Context();
 
     context = new Context(new Subtract());
-    int resultB = context->executeStrategy(a, b);
+    const int resultB = context->executeStrategy(a, b);
 
     context->~Context();
 
     context = new Context(new Multiply());
-    int resultC = context->executeStrategy(a, b);
+    const int resultC = context->executeStrategy(a, b);
 
     context->~Context();
 

@@ -7,7 +7,7 @@ class Multiply : public Strategy
 {
 public:
     Multiply();
-    virtual int execute(const int a, const int b);
+    virtual int execute(const int a, const int b) const;
     virtual ~Multiply();
 private:
 

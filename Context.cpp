@@ -1,12 +1,11 @@
 #include "Context.h"
 #include "Strategy.h"
 
-Context::Context(Strategy* strategy)
+Context::Context(Strategy* strategy) : strategy(strategy)
 {
-    this->strategy = strategy;
 }
 
-int Context::executeStrategy(const int a, const int b)
+int Context::executeStrategy(const int a, const int b) const
 {
     return this->strategy->execute(a, b);
 }

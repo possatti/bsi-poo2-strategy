@@ -5,7 +5,7 @@ Subtract::Subtract()
 {
 }
 
-int Subtract::execute(const int a, const int b)
+int Subtract::execute(const int a, const int b) const
 {
     std::cout << "Called Subtract's execute()" << std::endl;
     return a - b;

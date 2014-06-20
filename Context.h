@@ -5,12 +5,12 @@ class Strategy;
 
 class Context
 {
+private:
+    const Strategy * const strategy;
 public:
     Context(Strategy* strategy);
-    int executeStrategy(const int a, const int b);
+    int executeStrategy(const int a, const int b) const;
     virtual ~Context();
-private:
-    Strategy* strategy;
 };
 
 #endif	/* CONTEXT_H */
