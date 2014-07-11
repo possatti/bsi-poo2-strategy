@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Poo2-strategy : Exemplo em C++ do uso do padrão de projeto Strategy" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Poo2-strategy</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/possatti/poo2-strategy">View on GitHub</a>
+
+          <h1 id="project_title">Poo2-strategy</h1>
+          <h2 id="project_tagline">Exemplo em C++ do uso do padrão de projeto Strategy</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/possatti/poo2-strategy/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/possatti/poo2-strategy/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="exemplo-do-padr%C3%A3o-strategy-em-c" class="anchor" href="#exemplo-do-padr%C3%A3o-strategy-em-c"><span class="octicon octicon-link"></span></a>Exemplo do padrão Strategy em C++</h1>
+
+<h2>
+<a name="descri%C3%A7%C3%A3o-do-padr%C3%A3o" class="anchor" href="#descri%C3%A7%C3%A3o-do-padr%C3%A3o"><span class="octicon octicon-link"></span></a>Descrição do padrão</h2>
+
+<p>A ideia do padrão é encapsular diferentes comportamentos e dinamicamente associa-los a uma implementação.</p>
+
+<p>Em outras palavras, a intenção é definir famílias de algoritmos e fazê-los intercambiáveis. O padrão deixa que o algoritmo varie independentemente dos clientes que o usam. E é possível ainda mudar o algoritmo em tempo de execução.</p>
+
+<p>A figura abaixo mostra como o padrão é comumente implementado.</p>
+
+<p><img src="http://sourcemaking.com/files/v2/content/patterns/Strategy1-2x.png" alt="Estrutura do Strategy"></p>
+
+<p>Uma das grandes vantagens do padrão é o baixo acoplamento, pois a implementação dos algoritmo pode variar sem qualquer alteração necessária nos clientes.</p>
+
+<p>O principal princípio usado nesse padrão é "programe para interfaces, e não para implementações.</p>
+
+<h2>
+<a name="explica%C3%A7%C3%A3o-do-exemplo" class="anchor" href="#explica%C3%A7%C3%A3o-do-exemplo"><span class="octicon octicon-link"></span></a>Explicação do exemplo</h2>
+
+<p>A classe <code>Strategy</code> define uma interface que será implementada por diferentes operações de uma calculadora (como adição, multiplicação e etc). Assim a classe <code>Strategy</code> define uma família de comportamentos.</p>
+
+<p>Esses comportamentos por sua vez, serão usados pela classe <code>Context</code>, que tem um atributo chamado <code>strategy</code> que define a operação que está sendo atualmente usada. E quando o método <code>executeStrategy(..)</code> for chamado, ele executará a operação da estratégia atual.</p>
+
+<h2>
+<a name="alunos" class="anchor" href="#alunos"><span class="octicon octicon-link"></span></a>Alunos</h2>
+
+<ul>
+<li>Lucas Possatti (<a href="https://github.com/possatti" class="user-mention">@possatti</a>)</li>
+<li>Phillipe Alcantara (<a href="https://github.com/paflopes" class="user-mention">@paflopes</a>)</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Poo2-strategy maintained by <a href="https://github.com/possatti">possatti</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
