@@ -51,19 +51,139 @@
 
 <p>O exemplo trata um exemplo básico de uma calculadora. Com apenas algumas poucas operações implementadas, apenas para ilustrar o padrão. </p>
 
-<p>A classe <code>Strategy</code> define uma interface que será implementada por diferentes operações de uma calculadora (como adição, multiplicação e etc). Assim a classe <code>Strategy</code> define uma família de comportamentos.
-Strategy.h:
-'''cpp
-class Strategy
-{
-public:
-    Strategy();
-    virtual int execute(const int a, const int b) const = 0;
-    virtual ~Strategy();
-};
-'''</p>
+<p>A classe <code>Strategy</code> define uma interface que será implementada por diferentes operações de uma calculadora (como adição, multiplicação e etc). Assim a classe <code>Strategy</code> define uma família de comportamentos.</p>
 
-<p>Esses comportamentos por sua vez, serão usados pela classe <code>Context</code>, que tem um atributo chamado <code>strategy</code> que define a operação que está sendo atualmente usada. E quando o método <code>executeStrategy(..)</code> for chamado, ele executará a operação da estratégia atual.</p>
+<p><strong>Strategy.h:</strong></p>
+
+<div class="highlight highlight-cpp"><pre><span class="k">class</span> <span class="nc">Strategy</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Strategy</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="kt">int</span> <span class="n">execute</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">Strategy</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+
+<p><strong>Strategy.cpp:</strong></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "Strategy.h"</span>
+
+<span class="n">Strategy</span><span class="o">::</span><span class="n">Strategy</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="n">Strategy</span><span class="o">::~</span><span class="n">Strategy</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</pre></div>
+
+<p>Como é possível notar, o método <code>execute(..)</code> da classe <code>Strategy</code> não é implementado, pois essa responsabilidade é entregue as suas subclasses. Como por exemplo, a classe <code>Add</code>:</p>
+
+<p><strong>Add.h</strong></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "Strategy.h"</span>
+
+<span class="k">class</span> <span class="nc">Add</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Strategy</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Add</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="kt">int</span> <span class="n">execute</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">Add</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+
+<p><strong>Add.cpp</strong></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include "Add.h"</span>
+<span class="cp">#include &lt;iostream&gt;</span>
+
+<span class="n">Add</span><span class="o">::</span><span class="n">Add</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="n">Add</span><span class="o">::</span><span class="n">execute</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Called Add's execute()"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Add</span><span class="o">::~</span><span class="n">Add</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</pre></div>
+
+<p>Assim, a classe <code>Add</code> implementa o método <code>execute(..)</code> para executar o seu algoritmo específico. No caso, imprimir uma pequena frase, e retornar a soma dos dois parâmetros recebidos.</p>
+
+<p>Dá mesma forma que a classe <code>Add</code>, as classes <code>Subtract</code> e <code>Multiply</code> também herdam da classe <code>Strategy</code> e implementam o método <code>execute(..)</code> do seu modo específico. E como as operações compartilham essa interface em comum (a classe <code>Strategy</code>), podem ser dinamicamente utilizados por qualquer cliente que use a classe <code>Strategy</code>.</p>
+
+<p>Isso pode ser observado na classe <code>Context</code>, que tem um atributo chamado <code>strategy</code> que define a operação que está sendo atualmente usada numa determinada instância. E quando o método <code>executeStrategy(..)</code> for chamado, ele executará a operação da estratégia atual, chamando <code>strategy.execute(..)</code>.</p>
+
+<p><strong>Context.h:</strong></p>
+
+<div class="highlight highlight-cpp"><pre><span class="k">class</span> <span class="nc">Strategy</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Context</span>
+<span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="k">const</span> <span class="n">Strategy</span> <span class="o">*</span> <span class="k">const</span> <span class="n">strategy</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Context</span><span class="p">(</span><span class="n">Strategy</span><span class="o">*</span> <span class="n">strategy</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">executeStrategy</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">Context</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+
+<p><strong>Context.cpp:</strong></p>
+
+<div class="highlight highlight-cpp"><pre><span class="n">Context</span><span class="o">::</span><span class="n">Context</span><span class="p">(</span><span class="n">Strategy</span><span class="o">*</span> <span class="n">strategy</span><span class="p">)</span> <span class="o">:</span> <span class="n">strategy</span><span class="p">(</span><span class="n">strategy</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="n">Context</span><span class="o">::</span><span class="n">executeStrategy</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">strategy</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">Context</span><span class="o">::~</span><span class="n">Context</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">strategy</span><span class="o">-&gt;~</span><span class="n">Strategy</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Veja que é impossível prever que operação será realizada quando o método <code>executeStrategy(..)</code> da classe <code>Context</code> for invocado, pois a estratégia (isto é, a operação) só será definida na construção de cada objeto. Portanto, é definida em tempo de execução.</p>
+
+<p>Por fim, temos o método <code>main</code> que exemplifica o uso das classes criadas.</p>
+
+<p><strong>main.cpp:</strong></p>
+
+<div class="highlight highlight-cpp"><pre><span class="cp">#include &lt;cstdlib&gt;</span>
+<span class="cp">#include &lt;iostream&gt;</span>
+
+<span class="cp">#include "Context.h"</span>
+<span class="cp">#include "Add.h"</span>
+<span class="cp">#include "Subtract.h"</span>
+<span class="cp">#include "Multiply.h"</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Declara alguns valores.</span>
+    <span class="k">const</span> <span class="n">Context</span><span class="o">*</span> <span class="n">context</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="c1">// Cria um contexto, com a operação de adicionar,</span>
+    <span class="c1">// executa a operação, e destrói o objeto.</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Context</span><span class="p">(</span><span class="k">new</span> <span class="n">Add</span><span class="p">());</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">resultA</span> <span class="o">=</span> <span class="n">context</span><span class="o">-&gt;</span><span class="n">executeStrategy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="n">context</span><span class="o">-&gt;~</span><span class="n">Context</span><span class="p">();</span>
+
+    <span class="c1">// Cria um contexto, com a operação de subtrair,</span>
+    <span class="c1">// executa a operação, e destrói o objeto.</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Context</span><span class="p">(</span><span class="k">new</span> <span class="n">Subtract</span><span class="p">());</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">resultB</span> <span class="o">=</span> <span class="n">context</span><span class="o">-&gt;</span><span class="n">executeStrategy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="n">context</span><span class="o">-&gt;~</span><span class="n">Context</span><span class="p">();</span>
+
+    <span class="c1">// Cria um contexto, com a operação de multiplicar,</span>
+    <span class="c1">// executa a operação, e destrói o objeto.</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Context</span><span class="p">(</span><span class="k">new</span> <span class="n">Multiply</span><span class="p">());</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">resultC</span> <span class="o">=</span> <span class="n">context</span><span class="o">-&gt;</span><span class="n">executeStrategy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="n">context</span><span class="o">-&gt;~</span><span class="n">Context</span><span class="p">();</span>
+
+    <span class="c1">// Imprime os resultados obtidos.</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Result A: "</span> <span class="o">&lt;&lt;</span> <span class="n">resultA</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Result B: "</span> <span class="o">&lt;&lt;</span> <span class="n">resultB</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Result C: "</span> <span class="o">&lt;&lt;</span> <span class="n">resultC</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <h2>
 <a name="alunos" class="anchor" href="#alunos"><span class="octicon octicon-link"></span></a>Alunos</h2>
