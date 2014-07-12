@@ -4,7 +4,7 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Poo2-strategy : Exemplo em C++ do uso do padrão de projeto Strategy" />
+    <meta name="description" content="Exemplo do padrão Strategy em C++ : Exemplo em C++ do uso do padrão de projeto Strategy" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -31,12 +31,12 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-<h2>
+        <h2>
 <a name="descri%C3%A7%C3%A3o-do-padr%C3%A3o" class="anchor" href="#descri%C3%A7%C3%A3o-do-padr%C3%A3o"><span class="octicon octicon-link"></span></a>Descrição do padrão</h2>
 
-<p>A ideia do padrão é encapsular diferentes comportamentos e dinamicamente associa-los a uma implementação.</p>
+<p>A ideia do padrão é encapsular diferentes comportamentos e dinamicamente associá-los a uma implementação.</p>
 
-<p>Em outras palavras, a intenção é definir famílias de algoritmos e fazê-los intercambiáveis. O padrão deixa que o algoritmo varie independentemente dos clientes que o usam. E é possível ainda mudar o algoritmo em tempo de execução.</p>
+<p>Em outras palavras, a intenção é definir famílias de algoritmos e fazê-los intercambiáveis. O padrão deixa que o algoritmo varie independentemente do cliente que o usam. E é possível ainda mudar o algoritmo em tempo de execução.</p>
 
 <p>A figura abaixo mostra como o padrão é comumente implementado.</p>
 
@@ -49,7 +49,19 @@
 <h2>
 <a name="explica%C3%A7%C3%A3o-do-exemplo" class="anchor" href="#explica%C3%A7%C3%A3o-do-exemplo"><span class="octicon octicon-link"></span></a>Explicação do exemplo</h2>
 
-<p>A classe <code>Strategy</code> define uma interface que será implementada por diferentes operações de uma calculadora (como adição, multiplicação e etc). Assim a classe <code>Strategy</code> define uma família de comportamentos.</p>
+<p>O exemplo trata um exemplo básico de uma calculadora. Com apenas algumas poucas operações implementadas, apenas para ilustrar o padrão. </p>
+
+<p>A classe <code>Strategy</code> define uma interface que será implementada por diferentes operações de uma calculadora (como adição, multiplicação e etc). Assim a classe <code>Strategy</code> define uma família de comportamentos.
+Strategy.h:
+'''cpp
+class Strategy
+{
+public:
+    Strategy();
+    virtual int execute(const int a, const int b) const = 0;
+    virtual ~Strategy();
+};
+'''</p>
 
 <p>Esses comportamentos por sua vez, serão usados pela classe <code>Context</code>, que tem um atributo chamado <code>strategy</code> que define a operação que está sendo atualmente usada. E quando o método <code>executeStrategy(..)</code> for chamado, ele executará a operação da estratégia atual.</p>
 
@@ -66,7 +78,7 @@
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Poo2-strategy maintained by <a href="https://github.com/possatti">possatti</a></p>
+        <p class="copyright">Exemplo do padrão Strategy em C++ maintained by <a href="https://github.com/possatti">possatti</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
